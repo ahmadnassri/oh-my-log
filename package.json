@@ -1,0 +1,53 @@
+{
+  "version": "1.0.0",
+  "name": "info",
+  "description": "Beautiful console logs for your console application",
+  "author": "Ahmad Nassri <ahmad@ahmadnassri.com> (https://www.ahmadnassri.com/)",
+  "homepage": "https://github.com/ahmadnassri/node-info",
+  "repository": "ahmadnassri/node-info",
+  "license": "ISC",
+  "main": "lib/index",
+  "keywords": [
+    "info"
+  ],
+  "engines": {
+    "node": ">=0.10"
+  },
+  "files": [
+    "lib"
+  ],
+  "bugs": {
+    "url": "https://github.com/ahmadnassri/node-info/issues"
+  },
+  "config": {
+    "info": {
+      "date": {
+        "format": "isoTime"
+      },
+      "colors": {
+        "name": "red",
+        "date": "blue"
+      }
+    }
+  },
+  "scripts": {
+    "pretest": "standard && echint --verbose",
+    "test": "mocha",
+    "posttest": "npm run coverage",
+    "coverage": "istanbul cover --dir coverage _mocha -- -R dot",
+    "codeclimate": "codeclimate < coverage/lcov.info"
+  },
+  "devDependencies": {
+    "codeclimate-test-reporter": "^0.1.0",
+    "echint": "^1.5.0",
+    "istanbul": "^0.3.17",
+    "mocha": "^2.2.5",
+    "should": "^7.0.2",
+    "standard": "^4.5.4"
+  },
+  "dependencies": {
+    "chalk": "^1.1.0",
+    "dateformat": "^1.0.11",
+    "pkg-config": "^1.1.0"
+  }
+}
