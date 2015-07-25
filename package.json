@@ -1,14 +1,17 @@
 {
   "version": "1.0.0",
-  "name": "info",
+  "name": "oh-my-log",
   "description": "Beautiful console logs for your console application",
   "author": "Ahmad Nassri <ahmad@ahmadnassri.com> (https://www.ahmadnassri.com/)",
-  "homepage": "https://github.com/ahmadnassri/node-info",
-  "repository": "ahmadnassri/node-info",
+  "homepage": "https://github.com/ahmadnassri/oh-my-log",
+  "repository": "ahmadnassri/oh-my-log",
   "license": "ISC",
   "main": "lib/index",
   "keywords": [
-    "info"
+    "cli",
+    "console",
+    "info",
+    "log"
   ],
   "engines": {
     "node": ">=0.10"
@@ -17,10 +20,10 @@
     "lib"
   ],
   "bugs": {
-    "url": "https://github.com/ahmadnassri/node-info/issues"
+    "url": "https://github.com/ahmadnassri/oh-my-log/issues"
   },
   "config": {
-    "info": {
+    "oh-my-log": {
       "date": {
         "format": "isoTime"
       },

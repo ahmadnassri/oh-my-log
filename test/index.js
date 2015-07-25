@@ -2,16 +2,16 @@
 
 'use strict'
 
-var info = require('..')
+var myLog = require('..')
 var chalk = require('chalk')
 var format = require('dateformat')
 var util = require('util')
 
 require('should')
 
-describe('info', function () {
+describe('oh-my-log', function () {
   it('should use default values from package.json', function (done) {
-    var log = info('TEST', {
+    var log = myLog('TEST', {
       func: function (message) {
         var date = format(new Date(), 'isoTime')
         var expected = util.format('[%s] %s: Foo', chalk.red('TEST'), chalk.blue(date))
@@ -25,7 +25,7 @@ describe('info', function () {
   })
 
   it('should use internal default values', function (done) {
-    var log = info('TEST', {
+    var log = myLog('TEST', {
       date: {},
       colors: {},
       func: function (message) {
@@ -41,7 +41,7 @@ describe('info', function () {
   })
 
   it('should use custom date format', function (done) {
-    var log = info('TEST', {
+    var log = myLog('TEST', {
       date: {
         format: 'isoUtcDateTime'
       },
@@ -58,7 +58,7 @@ describe('info', function () {
   })
 
   it('should not use colors', function (done) {
-    var log = info('TEST', {
+    var log = myLog('TEST', {
       colors: false,
 
       func: function (message) {
@@ -74,7 +74,7 @@ describe('info', function () {
   })
 
   it('should not display dates', function (done) {
-    var log = info('TEST', {
+    var log = myLog('TEST', {
       date: false,
       colors: false,
 
@@ -90,7 +90,7 @@ describe('info', function () {
   })
 
   it('should use custom colors', function (done) {
-    var log = info('TEST', {
+    var log = myLog('TEST', {
       colors: {
         name: 'yellow',
         date: 'green'

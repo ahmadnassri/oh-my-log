@@ -1,4 +1,4 @@
-# node-info [![version][npm-version]][npm-url] [![License][npm-license]][license-url]
+# oh-my-log [![version][npm-version]][npm-url] [![License][npm-license]][license-url]
 
 > Beautiful console logs for your console applications
 
@@ -11,12 +11,12 @@
 ## Install
 
 ```sh
-npm install --save info
+npm install --save oh-my-log
 ```
 
 ## Usage
 
-### info(name, [options])
+### myLog(name, [options])
 
 - **name** (`String`, *Required*): The name/label to use
 - **options** (`Object`, *Optional*): An optional [`options`](#options) object may be passed that alters certain behaviours
@@ -25,9 +25,9 @@ Returns: `Function` The logging function
 
 
 ```js
-var info = require('info')
+var myLog = require('oh-my-log')
 
-var log = info('😄', {
+var log = myLog('😄', {
   colors: {
     name: 'blue',
     date: 'green'
@@ -63,25 +63,25 @@ The above example will output:
 | `name` | `String|Array` | no       | any [`chalk`](https://www.npmjs.com/package/chalk#styles) *style* value, or array of values | `['blue', 'bold']` |
 | `date` | `String|Array` | no       | any [`chalk`](https://www.npmjs.com/package/chalk#styles) *style* value, or array of values | `['green']`        |
 
-`info` will also look for `options` object in your `package.json` file. *This is accomplished using [`pkg-config`](https://www.npmjs.com/package/pkg-config), refer to `pkg-config`'s [README](https://github.com/ahmadnassri/pkg-config/blob/master/README.md) for more info*
+`oh-my-log` will also look for `options` object in your `package.json` file. *This is accomplished using [`pkg-config`](https://www.npmjs.com/package/pkg-config), refer to `pkg-config`'s [README](https://github.com/ahmadnassri/pkg-config/blob/master/README.md) for more info*
 
 ## License
 
 [ISC License](LICENSE) &copy; [Ahmad Nassri](https://www.ahmadnassri.com/)
 
-[license-url]: https://github.com/ahmadnassri/node-info/blob/master/LICENSE
+[license-url]: https://github.com/ahmadnassri/oh-my-log/blob/master/LICENSE
 
-[travis-url]: https://travis-ci.org/ahmadnassri/node-info
-[travis-image]: https://img.shields.io/travis/ahmadnassri/node-info.svg?style=flat-square
+[travis-url]: https://travis-ci.org/ahmadnassri/oh-my-log
+[travis-image]: https://img.shields.io/travis/ahmadnassri/oh-my-log.svg?style=flat-square
 
-[npm-url]: https://www.npmjs.com/package/info
-[npm-license]: https://img.shields.io/npm/l/info.svg?style=flat-square
-[npm-version]: https://img.shields.io/npm/v/info.svg?style=flat-square
-[npm-downloads]: https://img.shields.io/npm/dm/info.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/oh-my-log
+[npm-license]: https://img.shields.io/npm/l/oh-my-log.svg?style=flat-square
+[npm-version]: https://img.shields.io/npm/v/oh-my-log.svg?style=flat-square
+[npm-downloads]: https://img.shields.io/npm/dm/oh-my-log.svg?style=flat-square
 
-[codeclimate-url]: https://codeclimate.com/github/ahmadnassri/node-info
-[codeclimate-quality]: https://img.shields.io/codeclimate/github/ahmadnassri/node-info.svg?style=flat-square
-[codeclimate-coverage]: https://img.shields.io/codeclimate/coverage/github/ahmadnassri/node-info.svg?style=flat-square
+[codeclimate-url]: https://codeclimate.com/github/ahmadnassri/oh-my-log
+[codeclimate-quality]: https://img.shields.io/codeclimate/github/ahmadnassri/oh-my-log.svg?style=flat-square
+[codeclimate-coverage]: https://img.shields.io/codeclimate/coverage/github/ahmadnassri/oh-my-log.svg?style=flat-square
 
-[david-url]: https://david-dm.org/ahmadnassri/node-info
-[david-image]: https://img.shields.io/david/ahmadnassri/node-info.svg?style=flat-square
+[david-url]: https://david-dm.org/ahmadnassri/oh-my-log
+[david-image]: https://img.shields.io/david/ahmadnassri/oh-my-log.svg?style=flat-square
