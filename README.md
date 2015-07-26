@@ -1,6 +1,6 @@
 # oh-my-log [![version][npm-version]][npm-url] [![License][npm-license]][license-url]
 
-> Beautiful console logs for your console applications
+> Beautiful console logs for your console applications with [native string substitution](https://nodejs.org/docs/latest/api/console.html#console_console_log_data)
 
 [![Build Status][travis-image]][travis-url]
 [![Downloads][npm-downloads]][npm-url]
@@ -28,7 +28,7 @@ Returns: `Function` The logging function
 var myLog = require('oh-my-log')
 
 var log = myLog('😄', {
-  colors: {
+  styles: {
     name: 'blue',
     date: 'green'
   }
@@ -47,13 +47,13 @@ The above example will output:
 | Name      | Type       | Required | Description                            | Default       |
 | --------- | ---------- | -------- | -------------------------------------- | ------------- |
 | `date`    | `Object`   | no       | [date options](#date-options) object   |               |
-| `colors`  | `Object`   | no       | [color options](#color-options) object |               |
+| `styles`  | `Object`   | no       | [color options](#color-options) object |               |
 | `func`    | `Function` | no       | The logging function                   | `console.log` |
 
 #### Date Options
 
 | Name      | Type     | Required | Description                                                                   | Default       |
-| --------- | -------- | --------- | ----------------------------------------------------------------------------- | ------------- |
+| --------- | -------- | -------- | ----------------------------------------------------------------------------- | ------------- |
 | `format`  | `String` | no       | any [`dateformat`](https://www.npmjs.com/package/dateformat) compatible value | `hh:MM:ss TT` |
 
 #### Color Options

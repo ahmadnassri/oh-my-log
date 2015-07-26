@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "name": "oh-my-log",
-  "description": "Beautiful console logs for your console application",
+  "description": "Beautiful console logs for your console applications with native string substitution",
   "author": "Ahmad Nassri <ahmad@ahmadnassri.com> (https://www.ahmadnassri.com/)",
   "homepage": "https://github.com/ahmadnassri/oh-my-log",
   "repository": "ahmadnassri/oh-my-log",
@@ -27,7 +27,7 @@
       "date": {
         "format": "isoTime"
       },
-      "colors": {
+      "styles": {
         "name": "red",
         "date": "blue"
       }
