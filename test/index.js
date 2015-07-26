@@ -27,7 +27,7 @@ describe('oh-my-log', function () {
   it('should use internal default values', function (done) {
     var log = myLog('TEST', {
       date: {},
-      colors: {},
+      styles: {},
       func: function (message) {
         var date = format(new Date(), 'hh:MM:ss TT')
         var expected = util.format('[%s] %s: Foo', chalk.bold.blue('TEST'), chalk.green(date))
@@ -57,9 +57,9 @@ describe('oh-my-log', function () {
     log('Foo')
   })
 
-  it('should not use colors', function (done) {
+  it('should not use styles', function (done) {
     var log = myLog('TEST', {
-      colors: false,
+      styles: false,
 
       func: function (message) {
         var date = format(new Date(), 'isoTime')
@@ -76,7 +76,7 @@ describe('oh-my-log', function () {
   it('should not display dates', function (done) {
     var log = myLog('TEST', {
       date: false,
-      colors: false,
+      styles: false,
 
       func: function (message) {
         var expected = util.format('[TEST] : Foo')
@@ -89,9 +89,9 @@ describe('oh-my-log', function () {
     log('Foo')
   })
 
-  it('should use custom colors', function (done) {
+  it('should use custom styles', function (done) {
     var log = myLog('TEST', {
-      colors: {
+      styles: {
         name: 'yellow',
         date: 'green'
       },
