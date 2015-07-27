@@ -47,7 +47,7 @@ The above example will output:
 | Name      | Type       | Required | Description                            | Default       |
 | --------- | ---------- | -------- | -------------------------------------- | ------------- |
 | `date`    | `Object`   | no       | [date options](#date-options) object   |               |
-| `styles`  | `Object`   | no       | [color options](#color-options) object |               |
+| `styles`  | `Object`   | no       | [style options](#style-options) object |               |
 | `func`    | `Function` | no       | The logging function                   | `console.log` |
 
 #### Date Options
@@ -56,7 +56,7 @@ The above example will output:
 | --------- | -------- | -------- | ----------------------------------------------------------------------------- | ------------- |
 | `format`  | `String` | no       | any [`dateformat`](https://www.npmjs.com/package/dateformat) compatible value | `hh:MM:ss TT` |
 
-#### Color Options
+#### Style Options
 
 | Name   | Type           | Required | Description                                                                                 | Default            |
 | ------ | -------------- | -------- | ------------------------------------------------------------------------------------------- | ------------------ |
