@@ -40,6 +40,37 @@ describe('oh-my-log', function () {
     log('Foo')
   })
 
+  it('should use custom prefix', function (done) {
+    var log = myLog('TEST', {
+      prefix: '[hello:%name]',
+      func: function (message) {
+        var expected = util.format('[hello:%s] Foo', chalk.red('TEST'))
+        message.should.be.equal(expected)
+
+        done()
+      }
+    })
+
+    log('Foo')
+  })
+
+  it('should allow custom locals', function (done) {
+    var log = myLog(null, {
+      prefix: '[%foo:%bar]',
+      locals: {
+        foo: 'hello',
+        bar: 'world'
+      },
+      func: function (message) {
+        message.should.be.equal('[hello:world] Foo')
+
+        done()
+      }
+    })
+
+    log('Foo')
+  })
+
   it('should use custom date format', function (done) {
     var log = myLog('TEST', {
       date: {
