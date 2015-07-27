@@ -44,11 +44,13 @@ The above example will output:
 
 ### Options
 
-| Name      | Type       | Required | Description                            | Default       |
-| --------- | ---------- | -------- | -------------------------------------- | ------------- |
-| `date`    | `Object`   | no       | [date options](#date-options) object   |               |
-| `styles`  | `Object`   | no       | [style options](#style-options) object |               |
-| `func`    | `Function` | no       | The logging function                   | `console.log` |
+| Name      | Type       | Required | Description                                                                                                        | Default          |
+| --------- | ---------- | -------- | ------------------------------------------------------------------------------------------------------------------ | ---------------- |
+| `locals`  | `Object`   | no       | `locals` object, used to substitute `prefix` values using [`fürmat`](https://github.com/ahmadnassri/furmat)        | `false`          |
+| `prefix`  | `String`   | no       | prefix this string after substitution with `locals` values using [`fürmat`](https://github.com/ahmadnassri/furmat) | `[%name] %date:` |
+| `date`    | `Object`   | no       | [date options](#date-options) object                                                                               |                  |
+| `styles`  | `Object`   | no       | [style options](#style-options) object                                                                             |                  |
+| `func`    | `Function` | no       | The logging function                                                                                               | `console.log`    |
 
 #### Date Options
 
