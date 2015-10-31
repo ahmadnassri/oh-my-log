@@ -1,6 +1,6 @@
 # oh-my-log [![version][npm-version]][npm-url] [![License][npm-license]][license-url]
 
-> Beautiful console logs for your console applications with [native string substitution](https://nodejs.org/docs/latest/api/console.html#console_console_log_data)
+> Beautiful console logs for your console applications with [native string substitution](https://nodejs.org/docs/latest/api/console.html#console_console_log_data) and [Chalk][chalk] support.
 
 [![Build Status][travis-image]][travis-url]
 [![Downloads][npm-downloads]][npm-url]
@@ -27,13 +27,7 @@ Returns: `Function` The logging function
 ```js
 var myLog = require('oh-my-log')
 
-var log = myLog('😄', {
-  styles: {
-    name: 'blue',
-    date: 'green'
-  }
-})
-
+var log = myLog('😄')
 
 log('foo')
 ```
@@ -44,32 +38,28 @@ The above example will output:
 
 ### Options
 
-| Name      | Type       | Required | Description                                                                                                        | Default          |
-| --------- | ---------- | -------- | ------------------------------------------------------------------------------------------------------------------ | ---------------- |
-| `locals`  | `Object`   | no       | `locals` object, used to substitute `prefix` values using [`fürmat`](https://github.com/ahmadnassri/furmat)        | `false`          |
-| `prefix`  | `String`   | no       | prefix this string after substitution with `locals` values using [`fürmat`](https://github.com/ahmadnassri/furmat) | `[%name] %date:` |
-| `date`    | `Object`   | no       | [date options](#date-options) object                                                                               |                  |
-| `styles`  | `Object`   | no       | [style options](#style-options) object                                                                             |                  |
-| `func`    | `Function` | no       | The logging function                                                                                               | `console.log`    |
+| Name        | Type       | Required | Description                                                                         | Default          |
+| ----------- | ---------- | -------- | ----------------------------------------------------------------------------------- | ---------------- |
+| `prefix`    | `String`   | no       | prefix this string after substitution with `locals` values using [`fürmat`][furmat] | `[%name] %date:` |
+| `locals`    | `Object`   | no       | `locals` object, *see [`fürmat`][furmat] for details*                               | `false`          |
+| `modifiers` | `Object`   | no       | custom modifiers, *see [`fürmat`][furmat] for details*                              | `{}`             |
+| `chalk`     | `Boolean`  | no       | enable/disable chalk modifiers support *see [`fürmat`][furmat] for details*         | `true`           |
+| `date`      | `String`   | no       | any [`dateformat`](https://www.npmjs.com/package/dateformat) compatible value       | `hh:MM:ss TT`    |
+| `func`      | `Function` | no       | The logging function                                                                | `console.log`    |
 
-#### Date Options
+## [fürmat][furmat] & [Chalk](chalk)
 
-| Name      | Type     | Required | Description                                                                   | Default       |
-| --------- | -------- | -------- | ----------------------------------------------------------------------------- | ------------- |
-| `format`  | `String` | no       | any [`dateformat`](https://www.npmjs.com/package/dateformat) compatible value | `hh:MM:ss TT` |
+`oh-my-log` relies heavily on `fürmat` for styling text *(using `chalk`)* and adding modifiers functions for extended formating, please review [`furmat`][furmat] and [`chalk`][chalk] documentation for more details on how to use those modules.
 
-#### Style Options
 
-| Name   | Type           | Required | Description                                                                                 | Default            |
-| ------ | -------------- | -------- | ------------------------------------------------------------------------------------------- | ------------------ |
-| `name` | `String|Array` | no       | any [`chalk`](https://www.npmjs.com/package/chalk#styles) *style* value, or array of values | `['blue', 'bold']` |
-| `date` | `String|Array` | no       | any [`chalk`](https://www.npmjs.com/package/chalk#styles) *style* value, or array of values | `['green']`        |
-
-`oh-my-log` will also look for `options` object in your `package.json` file. *This is accomplished using [`pkg-config`](https://www.npmjs.com/package/pkg-config), refer to `pkg-config`'s [README](https://github.com/ahmadnassri/pkg-config/blob/master/README.md) for more info*
+`oh-my-log` will also look for `options` object in your `package.json` file. *This is accomplished using [`pkg-config`](https://www.npmjs.com/package/pkg-config), refer to `pkg-config`'s [README](https://github.com/ahmadnassri/pkg-config/blob/master/README.md) for more info*.
 
 ## License
 
 [ISC License](LICENSE) &copy; [Ahmad Nassri](https://www.ahmadnassri.com/)
+
+[chalk]: https://github.com/chalk/chalk
+[furmat]: https://github.com/ahmadnassri/furmat
 
 [license-url]: https://github.com/ahmadnassri/oh-my-log/blob/master/LICENSE
 

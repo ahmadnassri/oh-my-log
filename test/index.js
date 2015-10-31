@@ -10,24 +10,8 @@ var util = require('util')
 require('should')
 
 describe('oh-my-log', function () {
-  it('should use default values from package.json', function (done) {
+  it('should use default values', function (done) {
     var log = myLog('TEST', {
-      func: function (message) {
-        var date = format(new Date(), 'isoTime')
-        var expected = util.format('[%s] %s: Foo', chalk.red('TEST'), chalk.blue(date))
-        message.should.be.equal(expected)
-
-        done()
-      }
-    })
-
-    log('Foo')
-  })
-
-  it('should use internal default values', function (done) {
-    var log = myLog('TEST', {
-      date: {},
-      styles: {},
       func: function (message) {
         var date = format(new Date(), 'hh:MM:ss TT')
         var expected = util.format('[%s] %s: Foo', chalk.bold.blue('TEST'), chalk.green(date))
@@ -42,7 +26,7 @@ describe('oh-my-log', function () {
 
   it('should use custom prefix', function (done) {
     var log = myLog('TEST', {
-      prefix: '[hello:%name]',
+      prefix: '[hello:%name:red]',
       func: function (message) {
         var expected = util.format('[hello:%s] Foo', chalk.red('TEST'))
         message.should.be.equal(expected)
@@ -61,6 +45,7 @@ describe('oh-my-log', function () {
         foo: 'hello',
         bar: 'world'
       },
+
       func: function (message) {
         message.should.be.equal('[hello:world] Foo')
 
@@ -73,28 +58,11 @@ describe('oh-my-log', function () {
 
   it('should use custom date format', function (done) {
     var log = myLog('TEST', {
-      date: {
-        format: 'isoUtcDateTime'
-      },
+      date: 'isoUtcDateTime',
+
       func: function (message) {
         var date = format(new Date(), 'isoUtcDateTime')
-        var expected = util.format('[%s] %s: Foo', chalk.red('TEST'), chalk.blue(date))
-        message.should.be.equal(expected)
-
-        done()
-      }
-    })
-
-    log('Foo')
-  })
-
-  it('should not use styles', function (done) {
-    var log = myLog('TEST', {
-      styles: false,
-
-      func: function (message) {
-        var date = format(new Date(), 'isoTime')
-        var expected = util.format('[TEST] %s: Foo', date)
+        var expected = util.format('[%s] %s: Foo', chalk.bold.blue('TEST'), chalk.green(date))
         message.should.be.equal(expected)
 
         done()
@@ -107,10 +75,9 @@ describe('oh-my-log', function () {
   it('should not display dates', function (done) {
     var log = myLog('TEST', {
       date: false,
-      styles: false,
 
       func: function (message) {
-        var expected = util.format('[TEST] : Foo')
+        var expected = util.format('[%s] : Foo', chalk.bold.blue('TEST'))
         message.should.be.equal(expected)
 
         done()
@@ -120,22 +87,53 @@ describe('oh-my-log', function () {
     log('Foo')
   })
 
-  it('should use custom styles', function (done) {
+  it('should use custom modifiers', function (done) {
     var log = myLog('TEST', {
-      styles: {
-        name: 'yellow',
-        date: 'green'
+      modifiers: {
+        upper: function (string) {
+          return string.toUpperCase()
+        }
       },
 
       func: function (message) {
-        var date = format(new Date(), 'isoTime')
-        var expected = util.format('[%s] %s: Foo', chalk.yellow('TEST'), chalk.green(date))
+        var date = format(new Date(), 'hh:MM:ss TT')
+        var expected = util.format('[%s] %s: FOO', chalk.bold.blue('TEST'), chalk.green(date))
         message.should.be.equal(expected)
 
         done()
       }
     })
 
-    log('Foo')
+    log('%s:upper', 'foo')
+  })
+
+  it('should use chalk styles', function (done) {
+    var log = myLog('TEST', {
+      func: function (message) {
+        var date = format(new Date(), 'hh:MM:ss TT')
+        var expected = util.format('[%s] %s: %s', chalk.bold.blue('TEST'), chalk.green(date), chalk.bold.yellow('foo'))
+        message.should.be.equal(expected)
+
+        done()
+      }
+    })
+
+    log('%s:yellow:bold', 'foo')
+  })
+
+  it('should not use chalk styles', function (done) {
+    var log = myLog('TEST', {
+      chalk: false,
+      prefix: '[%name] %date:',
+      func: function (message) {
+        var date = format(new Date(), 'hh:MM:ss TT')
+        var expected = util.format('[TEST] %s: foo:yellow:bold', date)
+        message.should.be.equal(expected)
+
+        done()
+      }
+    })
+
+    log('%s:yellow:bold', 'foo')
   })
 })
