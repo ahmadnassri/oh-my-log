@@ -1,6 +1,6 @@
 # oh-my-log [![version][npm-version]][npm-url] [![License][npm-license]][license-url]
 
-> Beautiful console logs for your console applications with [native string substitution](https://nodejs.org/docs/latest/api/console.html#console_console_log_data) and [Chalk][chalk] support.
+> Beautiful console logs for your console applications with string substitution using [`fürmat`][furmat] & styling with [Chalk][chalk].
 
 [![Build Status][travis-image]][travis-url]
 [![Downloads][npm-downloads]][npm-url]
@@ -24,7 +24,7 @@ npm install --save oh-my-log
 Returns: `Function` The logging function
 
 
-```js
+```javascript
 var myLog = require('oh-my-log')
 
 var log = myLog('😄')
@@ -35,6 +35,58 @@ log('foo')
 The above example will output:
 
 ![example](example.png)
+
+- Create custom local variables:
+
+  ```javascript
+  var log = myLog('😄', {
+    locals: {
+      me: 'ahmad'
+    }
+  })
+
+  log('Hi, I\'m %me. repeat, my name is %me') // outputs: `Hi, my name is ahmad. repeat, my name is ahmad`
+  ```
+
+- Supports creating custom modifiers:
+
+  ```javascript
+  var log = myLog('😄', {
+    modifiers: {
+      upper: function (string) {
+        return string.toUpperCase()
+      }
+    }
+  })
+
+  log('%s:upper', 'foo') // outputs `FOO`
+  ```
+
+- Use chained Chalk styles as modifiers:
+
+  ```javascript
+  var log = myLog('😄')
+
+  log('%s:red:bold', 'foo')
+  ```
+
+- Combine for extra magic:
+
+  ```javascript
+  var log = myLog('😄', {
+    locals: {
+      me: 'ahmad'
+    },
+    modifiers: {
+      upper: function (string) {
+        return string.toUpperCase()
+      }
+    }
+  })
+
+
+  log('Hi, I\'m %me:upper. repeat, my name is %me:upper:red:bold') // outputs a colored version of: `Hi, my name is ahmad. repeat, my name is ahmad`
+  ```
 
 ### Options
 
@@ -49,12 +101,12 @@ The above example will output:
 
 ## [fürmat][furmat] & [Chalk](chalk)
 
-`oh-my-log` relies heavily on `fürmat` for styling text *(using `chalk`)* and adding modifiers functions for extended formating, please review [`furmat`][furmat] and [`chalk`][chalk] documentation for more details on how to use those modules.
+`oh-my-log` relies heavily on `fürmat` for styling text *(using `chalk`)* and adding modifiers functions for extended formating, please review [`fürmat`][furmat] and [`chalk`][chalk] documentation for more details on how to use those modules.
 
 
-`oh-my-log` will also look for `options` object in your `package.json` file. *This is accomplished using [`pkg-config`](https://www.npmjs.com/package/pkg-config), refer to `pkg-config`'s [README](https://github.com/ahmadnassri/pkg-config/blob/master/README.md) for more info*.
-
-## License
+`oh-my-log` will also look for `options` object in your `package.json` file. *This is accomplished using [`pkg-config`](https://www.npmjs.com/package/pkg-config), refer to `pkg-config`'s [README](https://github.com/ahmadnassri/pkg-config/blob/master/README.md) for more info*
+.g
+ig## License
 
 [ISC License](LICENSE) &copy; [Ahmad Nassri](https://www.ahmadnassri.com/)
 

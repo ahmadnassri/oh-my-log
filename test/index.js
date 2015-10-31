@@ -26,7 +26,7 @@ describe('oh-my-log', function () {
 
   it('should use custom prefix', function (done) {
     var log = myLog('TEST', {
-      prefix: '[hello:%name:red]',
+      prefix: '[hello:%__name:red]',
       func: function (message) {
         var expected = util.format('[hello:%s] Foo', chalk.red('TEST'))
         message.should.be.equal(expected)
@@ -124,7 +124,7 @@ describe('oh-my-log', function () {
   it('should not use chalk styles', function (done) {
     var log = myLog('TEST', {
       chalk: false,
-      prefix: '[%name] %date:',
+      prefix: '[%__name] %__date:',
       func: function (message) {
         var date = format(new Date(), 'hh:MM:ss TT')
         var expected = util.format('[TEST] %s: foo:yellow:bold', date)
