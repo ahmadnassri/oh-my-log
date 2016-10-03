@@ -41,7 +41,7 @@
     "istanbul": "^0.4.2",
     "mocha": "^3.0.2",
     "should": "^11.0.0",
-    "standard": "^8.0.0"
+    "standard": "^8.3.0"
   },
   "dependencies": {
     "chalk": "^1.1.1",
