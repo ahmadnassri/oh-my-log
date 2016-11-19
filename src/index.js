@@ -5,15 +5,16 @@ import furmat from 'furmat'
 import extend from 'extend'
 
 const debug = debuglog('oh-my-log')
+const defaults = {
+  date: 'hh:MM:ss TT',
+  func: console.log,
+  locals: false,
+  prefix: '[%__name:blue:bold] %__date:green:'
+}
 
 module.exports = function (name, options) {
   // default options
-  options = Object.assign({}, {
-    date: 'hh:MM:ss TT',
-    func: console.log,
-    locals: false,
-    prefix: '[%__name:blue:bold] %__date:green:'
-  }, options)
+  options = Object.assign({}, defaults, options)
 
   debug('%s %j', chalk.yellow('[options]'), options)
 

@@ -12,7 +12,7 @@
 ## Install
 
 ```bash
-npm install --production --save oh-my-log
+npm install --only=production --save oh-my-log
 ```
 
 ## Usage
