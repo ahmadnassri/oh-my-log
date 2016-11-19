@@ -48,6 +48,9 @@
     "oh-my-log": {
       "date": "isoTime",
       "prefix": "[%name:red] %date:blue:"
+    },
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
     }
   },
   "devDependencies": {

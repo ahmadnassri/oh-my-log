@@ -1,4 +1,4 @@
-import myLog from '..'
+import myLog from '../src'
 import chalk from 'chalk'
 import format from 'dateformat'
 import util from 'util'
