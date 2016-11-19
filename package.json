@@ -28,7 +28,7 @@
   },
   "scripts": {
     "compile": "babel -q src",
-    "test": "BABEL_ENV=test tap test/*.js --reporter spec --node-arg=--require --node-arg=babel-register",
+    "test": "FORCE_COLOR=yes BABEL_ENV=test tap test/*.js --reporter spec --node-arg=--require --node-arg=babel-register",
     "pretest": "snazzy && echint",
     "coverage": "BABEL_ENV=test tap test/*.js --coverage --nyc-arg=--require --nyc-arg=babel-register",
     "codeclimate": "nyc report --reporter=text-lcov | codeclimate-test-reporter",
