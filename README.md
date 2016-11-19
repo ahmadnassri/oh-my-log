@@ -23,18 +23,18 @@ I recommend using an optimized build matching your Node.js environment version, 
 /*
  * Node 7
  */
-const oh-my-log = require('oh-my-log/lib/node7')
+const logger = require('oh-my-log/lib/node7')
 
 /*
  * Node 6
  */
-const oh-my-log = require('oh-my-log/lib/node6')
+const logger = require('oh-my-log/lib/node6')
 
 /*
  * Node 4 (Default)
  * Note: additional ES2015 polyfills may be required
  */
-var oh-my-log = require('oh-my-log')
+var logger = require('oh-my-log')
 ```
 
 ## API
@@ -48,9 +48,8 @@ Returns: `Function` The logging function
 
 
 ```javascript
-var myLog = require('oh-my-log')
-
-var log = myLog('😄')
+const logger = require('oh-my-log')
+const log = logger('😄')
 
 log('foo')
 ```
@@ -62,7 +61,7 @@ The above example will output:
 - Create custom local variables:
 
   ```javascript
-  var log = myLog('😄', {
+  const log = logger('😄', {
     locals: {
       me: 'ahmad'
     }
@@ -74,11 +73,9 @@ The above example will output:
 - Supports creating custom modifiers:
 
   ```javascript
-  var log = myLog('😄', {
+  const log = logger('😄', {
     modifiers: {
-      upper: function (string) {
-        return string.toUpperCase()
-      }
+      upper: (string) => string.toUpperCase()
     }
   })
 
@@ -88,7 +85,7 @@ The above example will output:
 - Use chained Chalk styles as modifiers:
 
   ```javascript
-  var log = myLog('😄')
+  const log = logger('😄')
 
   log('%s:red:bold', 'foo')
   ```
@@ -96,14 +93,12 @@ The above example will output:
 - Combine for extra magic:
 
   ```javascript
-  var log = myLog('😄', {
+  const log = logger('😄', {
     locals: {
       me: 'ahmad'
     },
     modifiers: {
-      upper: function (string) {
-        return string.toUpperCase()
-      }
+      upper: (string) => string.toUpperCase()
     }
   })
 

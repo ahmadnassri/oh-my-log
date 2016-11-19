@@ -1,11 +1,12 @@
 import chalk from 'chalk'
 import dateformat from 'dateformat'
-import { debuglog } from 'util'
-import furmat from 'furmat'
 import extend from 'extend'
+import furmat from 'furmat'
+import { debuglog } from 'util'
 
 const debug = debuglog('oh-my-log')
 const defaults = {
+  chalk: true,
   date: 'hh:MM:ss TT',
   func: console.log,
   locals: false,
@@ -13,6 +14,9 @@ const defaults = {
 }
 
 export default function (name, options = {}) {
+  // always reset
+  defaults.modifiers = {}
+
   options = Object.assign({}, defaults, options)
 
   debug('%s %j', chalk.yellow('[options]'), options)
