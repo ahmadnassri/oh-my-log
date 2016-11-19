@@ -6,15 +6,38 @@
 [![Downloads][npm-downloads]][npm-url]
 [![Code Climate][codeclimate-quality]][codeclimate-url]
 [![Coverage Status][codeclimate-coverage]][codeclimate-url]
+[![Dependency Status][dependencyci-image]][dependencyci-url]
 [![Dependencies][david-image]][david-url]
 
 ## Install
 
-```sh
-npm install --save oh-my-log
+```bash
+npm install --production --save oh-my-log
 ```
 
 ## Usage
+
+I recommend using an optimized build matching your Node.js environment version, otherwise, the standard `require` would work just fine with any version of Node `>= v4.0` .
+
+```js
+/*
+ * Node 7
+ */
+const oh-my-log = require('oh-my-log/lib/node7')
+
+/*
+ * Node 6
+ */
+const oh-my-log = require('oh-my-log/lib/node6')
+
+/*
+ * Node 4 (Default)
+ * Note: additional ES2015 polyfills may be required
+ */
+var oh-my-log = require('oh-my-log')
+```
+
+## API
 
 ### myLog(name, [options])
 
@@ -105,15 +128,14 @@ The above example will output:
 
 
 `oh-my-log` will also look for `options` object in your `package.json` file. *This is accomplished using [`pkg-config`](https://www.npmjs.com/package/pkg-config), refer to `pkg-config`'s [README](https://github.com/ahmadnassri/pkg-config/blob/master/README.md) for more info*
-.g
-ig## License
 
-[ISC License](LICENSE) &copy; [Ahmad Nassri](https://www.ahmadnassri.com/)
+----
+> :copyright: [ahmadnassri.com](https://www.ahmadnassri.com/) &nbsp;&middot;&nbsp;
+> License: [ISC][license-url] &nbsp;&middot;&nbsp;
+> Github: [@ahmadnassri](https://github.com/ahmadnassri) &nbsp;&middot;&nbsp;
+> Twitter: [@ahmadnassri](https://twitter.com/ahmadnassri)
 
-[chalk]: https://github.com/chalk/chalk
-[furmat]: https://github.com/ahmadnassri/furmat
-
-[license-url]: https://github.com/ahmadnassri/oh-my-log/blob/master/LICENSE
+[license-url]: http://choosealicense.com/licenses/isc/
 
 [travis-url]: https://travis-ci.org/ahmadnassri/oh-my-log
 [travis-image]: https://img.shields.io/travis/ahmadnassri/oh-my-log.svg?style=flat-square
@@ -129,3 +151,6 @@ ig## License
 
 [david-url]: https://david-dm.org/ahmadnassri/oh-my-log
 [david-image]: https://img.shields.io/david/ahmadnassri/oh-my-log.svg?style=flat-square
+
+[dependencyci-url]: https://dependencyci.com/github/ahmadnassri/oh-my-log
+[dependencyci-image]: https://dependencyci.com/github/ahmadnassri/oh-my-log/badge?style=flat-square

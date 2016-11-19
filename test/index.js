@@ -1,139 +1,137 @@
-/* global describe, it */
+import myLog from '..'
+import chalk from 'chalk'
+import format from 'dateformat'
+import util from 'util'
+import { test } from 'tap'
 
-'use strict'
+test('should use default values', (assert) => {
+  assert.plan(1)
 
-var myLog = require('..')
-var chalk = require('chalk')
-var format = require('dateformat')
-var util = require('util')
+  let log = myLog('TEST', {
+    func: (message) => {
+      let date = format(new Date(), 'hh:MM:ss TT')
+      let expected = util.format('[%s] %s: Foo', chalk.bold.blue('TEST'), chalk.green(date))
 
-require('should')
-
-describe('oh-my-log', function () {
-  it('should use default values', function (done) {
-    var log = myLog('TEST', {
-      func: function (message) {
-        var date = format(new Date(), 'hh:MM:ss TT')
-        var expected = util.format('[%s] %s: Foo', chalk.bold.blue('TEST'), chalk.green(date))
-        message.should.be.equal(expected)
-
-        done()
-      }
-    })
-
-    log('Foo')
+      assert.equal(message, expected)
+    }
   })
 
-  it('should use custom prefix', function (done) {
-    var log = myLog('TEST', {
-      prefix: '[hello:%__name:red]',
-      func: function (message) {
-        var expected = util.format('[hello:%s] Foo', chalk.red('TEST'))
-        message.should.be.equal(expected)
+  log('Foo')
+})
 
-        done()
-      }
-    })
+test('should use custom prefix', (assert) => {
+  assert.plan(1)
 
-    log('Foo')
+  let log = myLog('TEST', {
+    prefix: '[hello:%__name:red]',
+    func: (message) => {
+      let expected = util.format('[hello:%s] Foo', chalk.red('TEST'))
+
+      assert.equal(message, expected)
+    }
   })
 
-  it('should allow custom locals', function (done) {
-    var log = myLog(null, {
-      prefix: '[%foo:%bar]',
-      locals: {
-        foo: 'hello',
-        bar: 'world'
-      },
+  log('Foo')
+})
 
-      func: function (message) {
-        message.should.be.equal('[hello:world] Foo')
+test('should allow custom locals', (assert) => {
+  assert.plan(1)
 
-        done()
-      }
-    })
+  let log = myLog(null, {
+    prefix: '[%foo:%bar]',
+    locals: {
+      foo: 'hello',
+      bar: 'world'
+    },
 
-    log('Foo')
+    func: (message) => assert.equal(message, '[hello:world] Foo')
   })
 
-  it('should use custom date format', function (done) {
-    var log = myLog('TEST', {
-      date: 'isoUtcDateTime',
+  log('Foo')
+})
 
-      func: function (message) {
-        var date = format(new Date(), 'isoUtcDateTime')
-        var expected = util.format('[%s] %s: Foo', chalk.bold.blue('TEST'), chalk.green(date))
-        message.should.be.equal(expected)
+test('should use custom date format', (assert) => {
+  assert.plan(1)
 
-        done()
-      }
-    })
+  let log = myLog('TEST', {
+    date: 'isoUtcDateTime',
 
-    log('Foo')
+    func: (message) => {
+      let date = format(new Date(), 'isoUtcDateTime')
+      let expected = util.format('[%s] %s: Foo', chalk.bold.blue('TEST'), chalk.green(date))
+
+      assert.equal(message, expected)
+    }
   })
 
-  it('should not display dates', function (done) {
-    var log = myLog('TEST', {
-      date: false,
+  log('Foo')
+})
 
-      func: function (message) {
-        var expected = util.format('[%s] : Foo', chalk.bold.blue('TEST'))
-        message.should.be.equal(expected)
+test('should not display dates', (assert) => {
+  assert.plan(1)
 
-        done()
-      }
-    })
+  let log = myLog('TEST', {
+    date: false,
 
-    log('Foo')
+    func: (message) => {
+      let expected = util.format('[%s] : Foo', chalk.bold.blue('TEST'))
+
+      assert.equal(message, expected)
+    }
   })
 
-  it('should use custom modifiers', function (done) {
-    var log = myLog('TEST', {
-      modifiers: {
-        upper: function (string) {
-          return string.toUpperCase()
-        }
-      },
+  log('Foo')
+})
 
-      func: function (message) {
-        var date = format(new Date(), 'hh:MM:ss TT')
-        var expected = util.format('[%s] %s: FOO', chalk.bold.blue('TEST'), chalk.green(date))
-        message.should.be.equal(expected)
+test('should use custom modifiers', (assert) => {
+  assert.plan(1)
 
-        done()
+  let log = myLog('TEST', {
+    modifiers: {
+      upper: function (string) {
+        return string.toUpperCase()
       }
-    })
+    },
 
-    log('%s:upper', 'foo')
+    func: (message) => {
+      let date = format(new Date(), 'hh:MM:ss TT')
+      let expected = util.format('[%s] %s: FOO', chalk.bold.blue('TEST'), chalk.green(date))
+
+      assert.equal(message, expected)
+    }
   })
 
-  it('should use chalk styles', function (done) {
-    var log = myLog('TEST', {
-      func: function (message) {
-        var date = format(new Date(), 'hh:MM:ss TT')
-        var expected = util.format('[%s] %s: %s', chalk.bold.blue('TEST'), chalk.green(date), chalk.bold.yellow('foo'))
-        message.should.be.equal(expected)
+  log('%s:upper', 'foo')
+})
 
-        done()
-      }
-    })
+test('should use chalk styles', (assert) => {
+  assert.plan(1)
 
-    log('%s:yellow:bold', 'foo')
+  let log = myLog('TEST', {
+    func: (message) => {
+      let date = format(new Date(), 'hh:MM:ss TT')
+      let expected = util.format('[%s] %s: %s', chalk.bold.blue('TEST'), chalk.green(date), chalk.bold.yellow('foo'))
+
+      assert.equal(message, expected)
+    }
   })
 
-  it('should not use chalk styles', function (done) {
-    var log = myLog('TEST', {
-      chalk: false,
-      prefix: '[%__name] %__date:',
-      func: function (message) {
-        var date = format(new Date(), 'hh:MM:ss TT')
-        var expected = util.format('[TEST] %s: foo:yellow:bold', date)
-        message.should.be.equal(expected)
+  log('%s:yellow:bold', 'foo')
+})
 
-        done()
-      }
-    })
+test('should not use chalk styles', (assert) => {
+  assert.plan(1)
 
-    log('%s:yellow:bold', 'foo')
+  let log = myLog('TEST', {
+    chalk: false,
+    prefix: '[%__name] %__date:',
+    func: (message) => {
+      let date = format(new Date(), 'hh:MM:ss TT')
+      let expected = util.format('[TEST] %s: foo:yellow:bold', date)
+
+      assert.equal(message, expected)
+    }
   })
+
+  log('%s:yellow:bold', 'foo')
 })
