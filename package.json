@@ -31,7 +31,7 @@
     "test": "FORCE_COLOR=true BABEL_ENV=test tap test/*.js --reporter spec --node-arg=--require --node-arg=babel-register",
     "pretest": "snazzy && echint",
     "coverage": "FORCE_COLOR=true BABEL_ENV=test tap test/*.js --reporter silent --coverage --nyc-arg=--require --nyc-arg=babel-register",
-    "codeclimate": "nyc report --reporter=text-lcov | codeclimate-test-reporter",
+    "codeclimate": "FORCE_COLOR=true BABEL_ENV=test tap --coverage-report=text-lcov | codeclimate-test-reporter",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "standard": {
