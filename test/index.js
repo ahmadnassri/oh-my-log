@@ -1,14 +1,16 @@
-import myLog from '../src'
-import chalk from 'chalk'
-import format from 'dateformat'
-import util from 'util'
-import { test } from 'tap'
+'use strict'
 
-test('should use default values', (assert) => {
+const myLog = require('../src')
+const chalk = require('chalk')
+const format = require('dateformat')
+const util = require('util')
+const test = require('tap').test
+
+test('should use default values', assert => {
   assert.plan(1)
 
   let log = myLog('TEST', {
-    func: (message) => {
+    func: message => {
       let date = format(new Date(), 'hh:MM:ss TT')
       let expected = util.format('[%s] %s: Foo', chalk.bold.blue('TEST'), chalk.green(date))
 
@@ -19,12 +21,12 @@ test('should use default values', (assert) => {
   log('Foo')
 })
 
-test('should use custom prefix', (assert) => {
+test('should use custom prefix', assert => {
   assert.plan(1)
 
   let log = myLog('TEST', {
     prefix: '[hello:%__name:red]',
-    func: (message) => {
+    func: message => {
       let expected = util.format('[hello:%s] Foo', chalk.red('TEST'))
 
       assert.equal(message, expected)
@@ -34,7 +36,7 @@ test('should use custom prefix', (assert) => {
   log('Foo')
 })
 
-test('should allow custom locals', (assert) => {
+test('should allow custom locals', assert => {
   assert.plan(1)
 
   let log = myLog(null, {
@@ -50,13 +52,13 @@ test('should allow custom locals', (assert) => {
   log('Foo')
 })
 
-test('should use custom date format', (assert) => {
+test('should use custom date format', assert => {
   assert.plan(1)
 
   let log = myLog('TEST', {
     date: 'isoUtcDateTime',
 
-    func: (message) => {
+    func: message => {
       let date = format(new Date(), 'isoUtcDateTime')
       let expected = util.format('[%s] %s: Foo', chalk.bold.blue('TEST'), chalk.green(date))
 
@@ -67,13 +69,13 @@ test('should use custom date format', (assert) => {
   log('Foo')
 })
 
-test('should not display dates', (assert) => {
+test('should not display dates', assert => {
   assert.plan(1)
 
   let log = myLog('TEST', {
     date: false,
 
-    func: (message) => {
+    func: message => {
       let expected = util.format('[%s] : Foo', chalk.bold.blue('TEST'))
 
       assert.equal(message, expected)
@@ -83,7 +85,7 @@ test('should not display dates', (assert) => {
   log('Foo')
 })
 
-test('should use custom modifiers', (assert) => {
+test('should use custom modifiers', assert => {
   assert.plan(1)
 
   let log = myLog('TEST', {
@@ -93,7 +95,7 @@ test('should use custom modifiers', (assert) => {
       }
     },
 
-    func: (message) => {
+    func: message => {
       let date = format(new Date(), 'hh:MM:ss TT')
       let expected = util.format('[%s] %s: FOO', chalk.bold.blue('TEST'), chalk.green(date))
 
@@ -104,11 +106,11 @@ test('should use custom modifiers', (assert) => {
   log('%s:upper', 'foo')
 })
 
-test('should use chalk styles', (assert) => {
+test('should use chalk styles', assert => {
   assert.plan(1)
 
   let log = myLog('TEST', {
-    func: (message) => {
+    func: message => {
       let date = format(new Date(), 'hh:MM:ss TT')
       let expected = util.format('[%s] %s: %s', chalk.bold.blue('TEST'), chalk.green(date), chalk.bold.yellow('foo'))
 
@@ -119,13 +121,13 @@ test('should use chalk styles', (assert) => {
   log('%s:yellow:bold', 'foo')
 })
 
-test('should not use chalk styles', (assert) => {
+test('should not use chalk styles', assert => {
   assert.plan(1)
 
   let log = myLog('TEST', {
     chalk: false,
     prefix: '[%__name] %__date:',
-    func: (message) => {
+    func: message => {
       let date = format(new Date(), 'hh:MM:ss TT')
       let expected = util.format('[TEST] %s: foo:yellow:bold', date)
 

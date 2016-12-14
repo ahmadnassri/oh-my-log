@@ -1,4 +1,4 @@
-# oh-my-log [![version][npm-version]][npm-url] [![License][npm-license]][license-url]
+# oh-my-log [![version][npm-version]][npm-url] [![License][license-image]][license-url]
 
 > Beautiful console logs for your console applications with string substitution using [`fürmat`][furmat] & styling with [Chalk][chalk].
 
@@ -13,28 +13,6 @@
 
 ```bash
 npm install --only=production --save oh-my-log
-```
-
-## Usage
-
-I recommend using an optimized build matching your Node.js environment version, otherwise, the standard `require` would work just fine with any version of Node `>= v4.0` .
-
-```js
-/*
- * Node 7
- */
-const logger = require('oh-my-log/lib/node7')
-
-/*
- * Node 6
- */
-const logger = require('oh-my-log/lib/node6')
-
-/*
- * Node 4 (Default)
- * Note: additional ES2015 polyfills may be required
- */
-var logger = require('oh-my-log')
 ```
 
 ## API
@@ -108,14 +86,14 @@ The above example will output:
 
 ### Options
 
-| Name        | Type       | Required | Description                                                                         | Default          |
-| ----------- | ---------- | -------- | ----------------------------------------------------------------------------------- | ---------------- |
-| `prefix`    | `String`   | no       | prefix this string after substitution with `locals` values using [`fürmat`][furmat] | `[%name] %date:` |
-| `locals`    | `Object`   | no       | `locals` object, *see [`fürmat`][furmat] for details*                               | `false`          |
-| `modifiers` | `Object`   | no       | custom modifiers, *see [`fürmat`][furmat] for details*                              | `{}`             |
-| `chalk`     | `Boolean`  | no       | enable/disable chalk modifiers support *see [`fürmat`][furmat] for details*         | `true`           |
-| `date`      | `String`   | no       | any [`dateformat`](https://www.npmjs.com/package/dateformat) compatible value       | `hh:MM:ss TT`    |
-| `func`      | `Function` | no       | The logging function                                                                | `console.log`    |
+Name        | Type       | Required | Description                                                                         | Default         
+----------- | ---------- | -------- | ----------------------------------------------------------------------------------- | ----------------
+`prefix`    | `String`   | `✖️`      | prefix this string after substitution with `locals` values using [`fürmat`][furmat] | `[%name] %date:`
+`locals`    | `Object`   | `✖️`      | `locals` object, _see [`fürmat`][furmat] for details_                               | `false`         
+`modifiers` | `Object`   | `✖️`      | custom modifiers, _see [`fürmat`][furmat] for details_                              | `{}`            
+`chalk`     | `Boolean`  | `✖️`      | enable/disable chalk modifiers support _see [`fürmat`][furmat] for details_         | `true`          
+`date`      | `String`   | `✖️`      | any [`dateformat`](https://www.npmjs.com/package/dateformat) compatible value       | `hh:MM:ss TT`   
+`func`      | `Function` | `✖️`      | The logging function                                                                | `console.log`   
 
 ## [fürmat][furmat] & [Chalk](chalk)
 
@@ -124,19 +102,19 @@ The above example will output:
 
 `oh-my-log` will also look for `options` object in your `package.json` file. *This is accomplished using [`pkg-config`](https://www.npmjs.com/package/pkg-config), refer to `pkg-config`'s [README](https://github.com/ahmadnassri/pkg-config/blob/master/README.md) for more info*
 
-----
+---
 > :copyright: [ahmadnassri.com](https://www.ahmadnassri.com/) &nbsp;&middot;&nbsp;
 > License: [ISC][license-url] &nbsp;&middot;&nbsp;
 > Github: [@ahmadnassri](https://github.com/ahmadnassri) &nbsp;&middot;&nbsp;
 > Twitter: [@ahmadnassri](https://twitter.com/ahmadnassri)
 
 [license-url]: http://choosealicense.com/licenses/isc/
+[license-image]: https://img.shields.io/github/license/ahmadnassri/oh-my-log.svg?style=flat-square
 
 [travis-url]: https://travis-ci.org/ahmadnassri/oh-my-log
 [travis-image]: https://img.shields.io/travis/ahmadnassri/oh-my-log.svg?style=flat-square
 
 [npm-url]: https://www.npmjs.com/package/oh-my-log
-[npm-license]: https://img.shields.io/npm/l/oh-my-log.svg?style=flat-square
 [npm-version]: https://img.shields.io/npm/v/oh-my-log.svg?style=flat-square
 [npm-downloads]: https://img.shields.io/npm/dm/oh-my-log.svg?style=flat-square
 
