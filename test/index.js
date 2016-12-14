@@ -1,6 +1,6 @@
 'use strict'
 
-const myLog = require('../src')
+const myLog = require('../lib')
 const chalk = require('chalk')
 const format = require('dateformat')
 const util = require('util')
