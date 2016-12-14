@@ -92,15 +92,15 @@ Name        | Type       | Required | Description                               
 `locals`    | `Object`   | `✖️`      | `locals` object, _see [`fürmat`][furmat] for details_                               | `false`         
 `modifiers` | `Object`   | `✖️`      | custom modifiers, _see [`fürmat`][furmat] for details_                              | `{}`            
 `chalk`     | `Boolean`  | `✖️`      | enable/disable chalk modifiers support _see [`fürmat`][furmat] for details_         | `true`          
-`date`      | `String`   | `✖️`      | any [`dateformat`](https://www.npmjs.com/package/dateformat) compatible value       | `hh:MM:ss TT`   
+`date`      | `String`   | `✖️`      | any [`dateformat`][dateformat] compatible value                                     | `hh:MM:ss TT`   
 `func`      | `Function` | `✖️`      | The logging function                                                                | `console.log`   
 
-## [fürmat][furmat] & [Chalk](chalk)
+## [`fürmat`][furmat] & [`Chalk`][chalk]
 
 `oh-my-log` relies heavily on `fürmat` for styling text *(using `chalk`)* and adding modifiers functions for extended formating, please review [`fürmat`][furmat] and [`chalk`][chalk] documentation for more details on how to use those modules.
 
 
-`oh-my-log` will also look for `options` object in your `package.json` file. *This is accomplished using [`pkg-config`](https://www.npmjs.com/package/pkg-config), refer to `pkg-config`'s [README](https://github.com/ahmadnassri/pkg-config/blob/master/README.md) for more info*
+`oh-my-log` will also look for `options` object in your `package.json` file. *This is accomplished using [`pkg-config`][pkg-config], refer to `pkg-config`'s [README][pkg-config-readme] for more info*
 
 ---
 > :copyright: [ahmadnassri.com](https://www.ahmadnassri.com/) &nbsp;&middot;&nbsp;
@@ -127,3 +127,10 @@ Name        | Type       | Required | Description                               
 
 [dependencyci-url]: https://dependencyci.com/github/ahmadnassri/oh-my-log
 [dependencyci-image]: https://dependencyci.com/github/ahmadnassri/oh-my-log/badge?style=flat-square
+
+[chalk]: https://github.com/chalk/chalk
+[furmat]: https://github.com/ahmadnassri/furmat
+[dateformat]: https://www.npmjs.com/package/dateformat
+
+[pkg-config]: https://www.npmjs.com/package/pkg-config
+[pkg-config-readme]: https://github.com/ahmadnassri/pkg-config/blob/master/README.md
