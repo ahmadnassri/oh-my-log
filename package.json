@@ -47,6 +47,6 @@
     "dateformat": "^2.0.0",
     "debug-log": "^1.0.1",
     "extend": "^3.0.0",
-    "furmat": "^1.0.0"
+    "furmat": "^2.0.0"
   }
 }
